@@ -3,6 +3,7 @@ import cors from 'cors';
 import rolRouter from './routes/rol.route.js';
 import userRouter from './routes/user.route.js';
 import transactionRouter from './routes/transaction.route.js';
+import notificationRouter from './routes/notification.route.js';
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(express.urlencoded({extended: true}));
 app.use('/api/v1/rols/', rolRouter);
 app.use('/api/v1/users/', userRouter);
 app.use('/api/v1/transactions/', transactionRouter);
+app.use('/api/v1/notifications/', notificationRouter);
 
 export default app;
