@@ -1,6 +1,6 @@
 -- create database if not exists bloglaravel_database;
 create database if not exists payment_wallet_db; 
-use payment_wallet_dd;
+use payment_wallet_db;
 
 create table rols (
 	id int primary key auto_increment,
@@ -68,10 +68,10 @@ CREATE table notifications (
 	foreign KEY (id_user) references users(id) on delete cascade on update cascade
 );
 
-CREATE TABLE audit (
+CREATE TABLE audits (
 	id int PRIMARY KEY auto_increment,
 	id_user int not null,
-	accion varchar(60) not null,
+	actions varchar(150) not null,
 	ip varchar(20) not null,
 	navegador varchar(50) not null,
 	fecha_hora_evento timestamp default current_timestamp,
