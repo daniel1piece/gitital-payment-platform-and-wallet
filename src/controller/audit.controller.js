@@ -62,3 +62,18 @@ export const updateAudit = async (req, res) => {
         });
     }
 };
+
+export const deleteAudit = async (req, res) => {
+    try {
+        const result = await Audits.deleAudit(req.params.id);
+        res.status(200).json({
+            message:"La auditoria fue eliminada exitosamente",
+            data:result
+        });
+    } catch (error) {
+        res.status(500).json({
+            message:"Ocurrio un error al intentar eliminar la auditoria",
+            error:error
+        });
+    }
+};

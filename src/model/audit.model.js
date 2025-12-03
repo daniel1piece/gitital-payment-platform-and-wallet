@@ -18,7 +18,7 @@ export const getAudit = async (id) => {
 };
 
 export const createAudit = async (auditInfo) => {
-    const {id_user, actions, ip, navegador} = auditInfo;
+    const {id_user, actions, ip, navegador} = auditInfo;   
     
     const result = await pool.query(`
         INSERT INTO audits (id_user, actions, ip, navegador)
@@ -29,7 +29,7 @@ export const createAudit = async (auditInfo) => {
 }
 
 export const updateAudit = async (id, auditInfo) => {
-     console.log(auditInfo);
+    //  console.log('                   model audit', auditInfo, 'whattt???');
     const {field, value} = auditInfo;
    
     
@@ -37,6 +37,15 @@ export const updateAudit = async (id, auditInfo) => {
         UPDATE audits
         SET 
         ${field} = "${value}"
+        WHERE id = "${id}";
+    `);
+
+    return result;
+}
+
+export const deleAudit = async ( id ) => {    
+    const result = await pool.query(`
+        DELETE FROM audits
         WHERE id = "${id}";
     `);
 

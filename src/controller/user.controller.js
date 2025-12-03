@@ -35,8 +35,9 @@ export const getSingleUser = async (req, res) => {
 
 export const createNewUser = async (req, res) => {
     try {
-        const user = User.createUser(req.body);
-
+        const user = await User.createUser(req.body);
+        console.log(user);
+        
         res.status(201).json({
             message:"Usuario creado exitosamente",
             data:user
