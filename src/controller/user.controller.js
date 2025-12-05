@@ -4,6 +4,8 @@ import bcrypt from 'bcrypt';
 export const getAllUsers = async (req, res) => {
     try {
         const allUsers = await User.getUsers();
+        console.log(req.headers);
+        
         res.status(200).json({
             message:"Usuarios obtenidos exitosamente",
             data: allUsers

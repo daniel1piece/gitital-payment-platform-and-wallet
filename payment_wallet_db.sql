@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS notifications (
 CREATE TABLE IF NOT EXISTS audits (
 	id int PRIMARY KEY auto_increment,
 	id_user int not null,
-	actions varchar(150) not null,
+	accion varchar(150) not null,
 	ip varchar(20) not null,
 	navegador varchar(50) not null,
 	fecha_hora_evento timestamp default current_timestamp,

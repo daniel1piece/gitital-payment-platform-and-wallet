@@ -6,10 +6,12 @@ import transactionRouter from './routes/transaction.route.js';
 import notificationRouter from './routes/notification.route.js';
 import auditRouter from './routes/audit.route.js';
 import authRouter from './routes/auth.route.js';
+import helmet from 'helmet';
 
 const app = express();
 
 // middlewares
+app.use(helmet()); // security for headers
 // Frontend port (only accepts origin from localhost port 5501)
 // Module for the origin policy
 app.use(cors({origin: 'http://127.0.0.1:5501'}));
