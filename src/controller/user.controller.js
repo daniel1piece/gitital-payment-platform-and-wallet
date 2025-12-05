@@ -2,9 +2,12 @@ import * as User from '../model/user.model.js';
 import bcrypt from 'bcrypt';
 
 export const getAllUsers = async (req, res) => {
+    console.log(req.rol);
+    
     try {
+        // console.log(req.body.rol, 'req.bobdy in user controller js');
         const allUsers = await User.getUsers();
-        console.log(req.headers);
+        // console.log(req.headers);
         
         res.status(200).json({
             message:"Usuarios obtenidos exitosamente",
