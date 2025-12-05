@@ -5,6 +5,7 @@ import userRouter from './routes/user.route.js';
 import transactionRouter from './routes/transaction.route.js';
 import notificationRouter from './routes/notification.route.js';
 import auditRouter from './routes/audit.route.js';
+import authRouter from './routes/auth.route.js';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors({origin: 'http://127.0.0.1:5501'}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/rols/', rolRouter);
 app.use('/api/v1/users/', userRouter);
 app.use('/api/v1/transactions/', transactionRouter);

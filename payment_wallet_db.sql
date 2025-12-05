@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 	id_rol int not null,
 	nombre varchar(200) NOT NULL,
 	email varchar(100) NOT NULL UNIQUE,
-	password varchar(20) not null,
+	password varchar(255) not null,
 	saldo_actual double(13, 4),
 	estado boolean not null,
 	created_at timestamp default CURRENT_TIMESTAMP,
