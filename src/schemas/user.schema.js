@@ -66,32 +66,26 @@ export const createUserSchema = z.object({
     }    
 });
 
-export const userReadAccessSchema = z.object({
+
+export const validateUserInfoSchema = z.object({
     rol: z
-    .string('Rol no propocionado')
-    .min(4, 'El rol de usuario no debe tener menos de 4 caracteres')
-    .max(20, 'El rol de usuario no debe tener mas de 20 caracteres'),
-    id: z
+    .string("Ingrese un rol")
+    .regex(/^[a-zA-Z]+$/, "Rol no valido.")
+    .min(4)
+    .max(255),
+    id_user: z
     .coerce
-    .bigint('El id de usuario debe ser un numero entero positivo')
-    .min(1, 'Id de usuario demasiado corto')
-    .max(200000000, 'Id de usuario demasiado largo.')
+    .bigint('El id del usuario debe ser ingresado')
+    .min(1, 'El id de usuario debe ser mayor a 0.')
+    .max(2000000000, 'El id de usuario debe ser un numero menor')
 })
-.superRefine((data, ctx) => {
-    const user = UserService.verifyUserExistsById(data.id);
-    if (!user) {
+.superRefine(async (data, ctx) => {
+    const assigedRol = await UserService.doesTheUserHaveSubmittedRol(data.rol, data.id_user);
+    if (!assigedRol) {
         ctx.addIssue({
             code:'custom',
-            message:'El usuario no existe',
-            path: [id]
+            message:'El usuario no corresponde con el nivel de permiso asignado',
+            path: ['rol']
         });
     }
-    const rol = UserService.verifyRolExistById(data.rol);
-    if (!rol) {
-        ctx.addIssue({
-            code: 'custom',
-            message: 'El rol no existe o no pertenece a este usuario',
-            path: [id]
-        });
-    }
-})
+});

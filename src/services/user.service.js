@@ -48,10 +48,27 @@ export const verifyUserExistsById = async ( id ) => {
 }
 
 export const verifyRolExistById = async ( id ) => {
-  const [colums] = await pool.query(`
+  const [rows] = await pool.query(`
     SELECT * FROM users WHERE id = "${id}";  
   `);
 
   console.log('verify rol exist by rol - user services js', rol);
-  return rol;
+  return rows[0].id_rol;
+}
+
+export const doesTheUserHaveSubmittedRol = async ( rol, user_id ) => {
+  const [userRows] = await pool.query(`
+    SELECT * FROM users WHERE id = "${user_id}";  
+  `);
+
+  const [rolRows] =  await pool.query (`
+    SELECT * FROM rols WHERE descripcion = "${rol}";  
+  `);
+
+
+  // if the user exists and the rol exists then we make the comparison
+  // otherwise, we throw an error
+  
+  return (rolRows[0] && userRows[0]) ? (rolRows[0].id === userRows[0].id_rol) : false;
+  
 }

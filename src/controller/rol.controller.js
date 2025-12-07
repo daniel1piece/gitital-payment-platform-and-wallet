@@ -45,9 +45,8 @@ export const getSingleRol = async (req, res) => {
 
 export const creatNewRol = async (req, res) => {
     try {
-        const newRol = await createRol(req.body);
-        // console.log(req.body);
-        
+        req.body.descripcion = req.body.descripcion.toLowerCase();
+        const newRol = await createRol(req.body);      
 
         res.status(201).json({
             message:"Rol creado exitosamente",
