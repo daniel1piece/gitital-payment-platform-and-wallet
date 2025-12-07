@@ -6,10 +6,10 @@ import { verifyToken } from '../middlewares/auth.middleware.js';
 
 const auditRouter = express.Router();
 
-auditRouter.get('/', verifyToken, getAudits);
-auditRouter.get('/:id', verifyToken, getAudit);
-auditRouter.post('/', upload.none(), verifyToken, createAudit);
-auditRouter.put('/:id', upload.none(), verifyToken, updateAudit);
-auditRouter.delete('/:id', verifyToken, deleteAudit);
+auditRouter.get('/', getAudits);
+auditRouter.get('/:id', getAudit);
+auditRouter.post('/', upload.none(), createAudit);
+auditRouter.put('/:id', upload.none(), updateAudit);
+auditRouter.delete('/:id', deleteAudit);
 
 export default auditRouter;

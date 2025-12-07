@@ -21,7 +21,7 @@ export const createAudit = async (auditInfo) => {
     const {id_user, actions, ip, navegador} = auditInfo;   
     
     const result = await pool.query(`
-        INSERT INTO audits (id_user, actions, ip, navegador)
+        INSERT INTO audits (id_user, accion, ip, navegador)
         VALUES ("${id_user}", "${actions}", "${ip}", "${navegador}");   
     `);
 

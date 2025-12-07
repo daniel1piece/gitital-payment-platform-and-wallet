@@ -65,3 +65,33 @@ export const createUserSchema = z.object({
         });
     }    
 });
+
+export const userReadAccessSchema = z.object({
+    rol: z
+    .string('Rol no propocionado')
+    .min(4, 'El rol de usuario no debe tener menos de 4 caracteres')
+    .max(20, 'El rol de usuario no debe tener mas de 20 caracteres'),
+    id: z
+    .coerce
+    .bigint('El id de usuario debe ser un numero entero positivo')
+    .min(1, 'Id de usuario demasiado corto')
+    .max(200000000, 'Id de usuario demasiado largo.')
+})
+.superRefine((data, ctx) => {
+    const user = UserService.verifyUserExistsById(data.id);
+    if (!user) {
+        ctx.addIssue({
+            code:'custom',
+            message:'El usuario no existe',
+            path: [id]
+        });
+    }
+    const rol = UserService.verifyRolExistById(data.rol);
+    if (!rol) {
+        ctx.addIssue({
+            code: 'custom',
+            message: 'El rol no existe o no pertenece a este usuario',
+            path: [id]
+        });
+    }
+})

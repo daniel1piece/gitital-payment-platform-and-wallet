@@ -35,3 +35,14 @@ export const readUsersPermissionAccess = (req, res, next) => {
     }
 };
 
+export const readUserPermissionAccess = (req, res, next) => {
+    const permission = accesscontrol.can(req.body.rol).readOwn('user');
+
+    if (!permission.granted) {
+         res.status(403).json({
+            message:"Accesso denegado, usted no tiene permiso para acceder a esta informacion, por favor contacte al administrador del sistema"
+        }).end();
+    }
+
+    next();
+}

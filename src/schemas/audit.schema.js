@@ -12,4 +12,6 @@ export const createAuditSchema = z
     .min(4, 'La accion ingresada deber ser mas larga')
     .max(150, 'La accion ingresada debe ser mas corta')
 })
-.superRefine();
+.superRefine(
+    
+);

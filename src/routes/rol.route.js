@@ -5,10 +5,10 @@ import { verifyToken } from '../middlewares/auth.middleware.js';
 
 const rolRouter = express.Router();
 
-rolRouter.get('/', verifyToken, getAllRols);
-rolRouter.get('/:id', verifyToken, getSingleRol);
-rolRouter.post('/', upload.none(), verifyToken, creatNewRol);
-rolRouter.put('/:id', upload.none(), verifyToken, updateNowRol);
-rolRouter.delete('/:id', verifyToken, deleteNowRol);
+rolRouter.get('/', getAllRols);
+rolRouter.get('/:id', getSingleRol);
+rolRouter.post('/', upload.none(), creatNewRol);
+rolRouter.put('/:id', upload.none(), updateNowRol);
+rolRouter.delete('/:id', deleteNowRol);
 
 export default rolRouter;

@@ -5,10 +5,10 @@ import { verifyToken } from '../middlewares/auth.middleware.js';
 
 const transactionRouter = express.Router();
 
-transactionRouter.get('/', verifyToken, getTransactions);
-transactionRouter.get('/:id', verifyToken, getTransaction);
-transactionRouter.post('/', upload.none(), verifyToken,createTransaction);
-transactionRouter.put("/:id", upload.none(), verifyToken, updateTransaction);
-transactionRouter.delete("/:id", verifyToken, deleteTransaction);
+transactionRouter.get('/', getTransactions);
+transactionRouter.get('/:id', getTransaction);
+transactionRouter.post('/', upload.none(),createTransaction);
+transactionRouter.put("/:id", upload.none(), updateTransaction);
+transactionRouter.delete("/:id", deleteTransaction);
 
 export default transactionRouter;

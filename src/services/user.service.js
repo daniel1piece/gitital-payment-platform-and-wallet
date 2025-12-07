@@ -38,3 +38,20 @@ export const verifyPassword = async (email, password) => {
   }
   return null;
 }
+
+export const verifyUserExistsById = async ( id ) => {
+  const user = await pool.query(`
+    SELECT * FROM users WHERE id = "${id};"  
+  `)
+  console.log('verify user exist by id - user services js', user);
+  return user;
+}
+
+export const verifyRolExistById = async ( id ) => {
+  const [colums] = await pool.query(`
+    SELECT * FROM users WHERE id = "${id}";  
+  `);
+
+  console.log('verify rol exist by rol - user services js', rol);
+  return rol;
+}
